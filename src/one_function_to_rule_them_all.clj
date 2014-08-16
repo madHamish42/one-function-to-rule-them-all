@@ -43,13 +43,18 @@
      :else (concat sorted [n] rst))))
 
 (defn insertion-sort [a-seq]
-  [:-])
+  (reduce (fn [sorted val]
+            (insert sorted val)) [] a-seq))
+
 
 (defn parity [a-seq]
-  [:-])
+  (reduce #(if (contains? %1 %2)
+             (disj %1 %2)
+             (conj %1 %2)) #{} a-seq))
 
-(defn minus [x]
-  :-)
+(defn minus
+  ([x] (- x))
+  ([x y] (- x y)))
 
 (defn count-params [x]
   :-)
@@ -64,4 +69,4 @@
   [:-])
 
 
-(insert [1 3] 2)  
+(minus 4 3)
