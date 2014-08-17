@@ -56,11 +56,13 @@
   ([x] (- x))
   ([x y] (- x y)))
 
-(defn count-params [x]
-  :-)
+(defn count-params [& args]
+  (count args))
 
-(defn my-* [x]
-  :-)
+(defn my-*
+  ([] 1)
+  ([x] x)
+  ([x & args] (* x (reduce * args))))
 
 (defn pred-and [x]
   (fn [x] :-))
@@ -69,4 +71,4 @@
   [:-])
 
 
-(minus 4 3)
+(reduce * [3])  
