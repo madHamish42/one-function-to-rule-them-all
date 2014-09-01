@@ -64,11 +64,22 @@
   ([x] x)
   ([x & args] (* x (reduce * args))))
 
-(defn pred-and [x]
-  (fn [x] :-))
+(defn pred-and1 [pred1 pred2]
+  (fn [elm]
+    (if (and (pred1 elm)
+             (pred2 elm))
+      true
+      false)))
+
+(defn pred-and
+  ([] (fn [x] true) )
+  ([p] (fn [x] (p x)))
+  ([p & rest] (fn [x]
+                (reduce #(and %1 (%2 x)) (p x) rest))))
 
 (defn my-map [f a-seq]
   [:-])
 
 
-(reduce * [3])  
+(filter (pred-and number? integer? pos? even?)
+        [1 0 -2 :a 7 "a" 2])
